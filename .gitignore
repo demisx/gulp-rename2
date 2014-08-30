@@ -1,5 +1,5 @@
 .DS_Store
 node_modules
-log/*.log
+*.log
 .build
 tmp

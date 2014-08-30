@@ -1,7 +1,7 @@
 {
   "name": "gulp-rename2",
-  "description": "A gulp plugin for handling and transforming file paths",
-  "version": "0.1.0",
+  "description": "A gulp plugin for transforming file paths",
+  "version": "0.1.2",
   "homepage": "https://github.com/demisx/gulp-rename2",
   "repository": {
     "type": "git",
