@@ -8,13 +8,13 @@ var PLUGIN_NAME = 'gulp-rename2';
 
 module.exports = function(rules, options){
 
-  options = arguments[1] || {}
-  options.debug && gutil.log("transformation function: ", rules);
-  options.debug && gutil.log("options: ", options);
+  options = options || {};
+  options.debug && gutil.log("[DEBUG] transformation function: ", rules);
+  options.debug && gutil.log("[DEBUG] options: ", options);
 
   if (typeof rules !== 'function') {
     throw new gutil.PluginError(
-      PLUGIN_NAME, 'Missing function with path transformation rules'
+      PLUGIN_NAME, '[ERROR] Missing transformation function.'
     );
   }
 
@@ -31,7 +31,7 @@ module.exports = function(rules, options){
     if (!newPath) {
       this.emit('error', new gutil.PluginError(
         PLUGIN_NAME, 
-        'The new path is not valid. Please check your transformation function to ensure it returns a valid path'
+        '[ERROR] The new path is not valid. Please check your transformation function to ensure it returns a valid path'
       ));
     } else {
       file.path = path.resolve(cwd, newPath);

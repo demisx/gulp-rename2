@@ -1,11 +1,14 @@
 gulp-rename2
 ============
 
-A simple, yet powerful [gulp](https://github.com/gulpjs/gulp) plugin for transforming file paths.
+A simple, yet powerful [gulp](https://github.com/gulpjs/gulp) plugin for transforming file paths
+in the stream.
 
 ## Usage
 
-Here is an example of transforming `app/modules/viewer/index.coffee` to `.build/modules/viewer/index.js`
+Here is a contrived example of transforming `app/modules/viewer/index.coffee` to `.build/modules/viewer/index.js`.
+Obviously, you may do anything you want inside `pathObj.join()` as long as it returns syntactically valid file path
+(i.e. no checks are made against the files system whether this path is valid or not).
 
 ```js
 var rename = require("gulp-rename2");
@@ -31,17 +34,20 @@ rename(transformFunction [, options])
 
 ### transformFunction
 
-The `transformFunction` must have the following signature `function (pathObj, filePath) {}`
-and must return a transformed path string. The `pathObj` is an instance of the core Node.js 
-[Path](http://nodejs.org/api/path.html) module and the `filePath` is the relative file path of 
-the file piped through the stream. Use `pathObj` instance to perform transformations on the 
-`file`.
+The `transformFunction` must have the following signature `function (pathObj, filePath) {}`. 
+The `pathObj` is an instance of the core Node.js [Path](http://nodejs.org/api/path.html) 
+module and the `filePath` is the relative file path of the file piped through the stream. 
+Basically, use `pathObj` instance to perform transformations on the `filePath` leveraging
+methods provided by the Node's `Path` core module. 
+
+This function must return the final path string.
 
 ### [options]
 ```
 { verbose: true }
 ```
-Use verbose option to output the original and transformed paths to the log. The default is `false`.
+Use verbose option to output the original and the transformed file paths to the log. 
+The default is `false`.
 
 ```js
 var rename = require("gulp-rename2");
